@@ -1,0 +1,33 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+{% if u_role == "Admin" %}
+<form class="form" method="GET" action="add_cam_action">
+        IP Address: <input type="text" name="ip_address" placeholder="Enter the IP Address" value='{{request.GET.ip_address}}'><br><br>
+        Location: <select  name="location">
+                    {% if new_location %}
+                    {% for new in new_location %}
+                    <option value="{{new.location}}">{{ new.location }}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+                <a class="add_more" href="new_details">Add More</a><br><br>
+        Camera Type: <select  name="camera_type">
+                    {% if new_camera_type %}
+                    {% for new in new_camera_type %}
+                    <option value="{{new.camera_type}}">{{ new.camera_type }}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+                <a class="add_more" href="new_details">Add More</a><br><br>
+                <button type="submit">Add</button><br><br>
+                
+                {% if error %}
+                <b style="color: red;">{{ error }}</b>
+                {% endif %} 
+</form>
+{% else %}
+    <h1><b style="color: red;">Not Authorized!!!</b></h1>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+
+
+    <table>
+        <tr>
+            <th>License Plate</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        {% if s_query %}
+        {% for s in s_query %}    
+        <tr>
+            <td>{{s.license_number}}</td>
+            <td>{{s.location}}</td>
+            <td>{{s.date}}</td>
+            <td>{{s.time}}</td>
+        </tr>
+        </table>
+        <br />
+        <img height="400" width="500" src={{s.vehicle_image.url}}>
+        <br />
+        <button onclick="javascript:history.go(-1);" >Back</button>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}

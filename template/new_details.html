@@ -1,0 +1,13 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+{% if u_role == "Admin" %}
+        <form class="form" method="GET" action="new_details_action">
+            New Location:<input type="text" name="new_location" placeholder="Enter the New Location"><br><br>
+            New Camera Type:<input type="text" name="new_camera_type" placeholder="Enter the New Camera Type"><br><br>
+            <button type="submit">Update</button>
+        </form>
+{% else %}
+    <h1><b style="color: red;">Not Authorized!!!</b></h1>
+{% endif %}
+{% endblock %}

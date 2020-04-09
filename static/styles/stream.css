@@ -1,0 +1,21 @@
+.stream {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    background: red;
+    cursor: pointer;
+    color: white;
+    margin: 5px;
+}
+
+img {
+    width: 1000px;
+    height: 600px;
+}

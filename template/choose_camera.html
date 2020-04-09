@@ -1,0 +1,23 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+{% if u_role == "Admin" %}
+<form class="form" method="GET" action="stream">
+        Select a Camera: <select  name="camera">
+                {% if s_query %}
+                {% for s in s_query %}    
+                    <option value="{{s.ip_address}}">{{ s.ip_address }}</option>
+                {% endfor %}
+                {% endif %}
+                </select>
+                <button type="submit">Stream</button><br><br>
+                
+                {% if error %}
+                <b style="color: red;">{{ error }}</b>
+                {% endif %} 
+</form>
+{% else %}
+    <h1><b style="color: red;">Not Authorized!!!</b></h1>
+{% endif %}
+
+{% endblock %}

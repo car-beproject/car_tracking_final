@@ -1,0 +1,43 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+
+    <form class="form" method="GET" action="search_camera">
+            Ip Address<input type="text" name="ip_add" placeholder="Enter the Ip Address" 
+            value='{{request.GET.ip_add}}'>
+            Location:<select name="location" value="{{request.GET.location}}">
+                    <option value="All">All</option>                
+            {% if new_location %}
+                {% for new in new_location %}
+                    <option value="{{new.location}}">{{ new.location }}</option>
+                {% endfor %}
+            {% endif %}</select>
+            Camera Type: <select  name="camera_type" value="{{request.GET.camera_type}}">
+                    {% if new_camera_type %}
+                    {% for new in new_camera_type %}
+                    <option name="{{ new.camera_type }}" value="{{new.camera_type}}">{{ new.camera_type }}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+            <button type="submit">Filter</button><br>
+            
+        </form>
+        <div>
+            <table>
+                <tr>
+                    <th>Ip Address</th>
+                    <th>Location</th>
+                    <th>Camera Type</th>
+                </tr>
+                {% if c_query %}
+                {% for q in c_query %}    
+                <tr>
+                    <td>{{q.ip_address}}</td>
+                    <td>{{q.location}}</td>
+                    <td>{{q.camera_type}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+{% endblock %}

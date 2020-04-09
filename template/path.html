@@ -1,0 +1,39 @@
+{% extends 'basichead.html' %}
+
+{% block content %}
+    <div class="path_body">
+        <div class="map_body">
+            <img class="map" src="../static/images/map.png" />
+        </div>
+        <div class="form_body">
+        <form class="form" method="GET" action="path_generator">
+            License Plate:<input type="text" name="license_plate" placeholder="Enter the license plate number" 
+            value='{{request.GET.license_plate}}'>
+            <button type="submit">Submit</button><br>
+            {% if info %}
+            <b style="color: red;">{{ info }}</b>
+            {% endif %}
+        </form>
+        <div>
+            <table>
+                <tr>
+                    <th>License Plate</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+                {% if s_query %}
+                {% for s in s_query %}    
+                <tr onclick="location.href='vehicle_details/{{s.id}}'">
+                    <td>{{s.license_number}}</td>
+                    <td>{{s.location}}</td>
+                    <td>{{s.date}}</td>
+                    <td>{{s.time}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+        </div>
+    </div>   
+{% endblock %}    
